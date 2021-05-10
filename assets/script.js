@@ -173,6 +173,7 @@ var generatePassword = function () {
   //*****************************************************************************************
   //Declare an empty array to put in the password characters
   var arr = [];
+  var arrTwo = [];
 
 
   //Case 1 - Only 1 Character Type
@@ -229,15 +230,108 @@ var generatePassword = function () {
 
   //*************************************************************************
   //Case 2 - 2 Character Types
-  var passwordLengthMinusOne = passwordLength - 1;
-  // a random number between 1 and one less than the password length (to ensure that there's always one left for the second number)
-  var firstRandomNumber = Math.floor(Math.random() * (passwordLengthMinusOne) + 1);
-  var secondRandomNumber = passwordLength - firstRandomNumber;
+  else if (numberOfCharacterTypes === 2) {
+    var passwordLengthMinusOne = passwordLength - 1;
+    // a random number between 1 and one less than the password length (to ensure that there's always one left for the second number)
+    var firstRandomNumber = Math.floor(Math.random() * (passwordLengthMinusOne) + 1);
+    var secondRandomNumber = passwordLength - firstRandomNumber;
 
-  //Those two values are the lengths of 
+    //Those two values are the lengths of 
+
+    var counter = 0;
+    for (var i = 0; i < characterTypeArray.length; i++ ) {
+      if (characterTypeArray[i]) {
+        counter ++; //in this case, the counter will only ever be 1 and 2 because the above statement is only true twice
+        if (counter === 1) {
+            if (i === 0){
+                for (var x = 0; x < firstRandomNumber; x++ ) {
+                  //random number between 0 and 25 (for the alphabets)
+                  var random = Math.floor(Math.random() * 26);
+                  arr[x] = lowerAlphabet[random];
+                }
+                var arrString = arr.toString();
+      
+            }
+              //if only uppercase
+            else if (i === 1) {
+                for (var x = 0; x < firstRandomNumber; x++ ) {
+                  //random number between 0 and 25 (for the alphabets)
+                  var random = Math.floor(Math.random() * 26);
+                  arr[x] = upperAlphabet[random];
+                }
+                var arrString = arr.toString();
+            }
+              //if only numeric
+            else if (i === 2) {
+                for (var x = 0; x < firstRandomNumber; x++ ) {
+                  //random number between 0 and 9 (for the numbers)
+                  var random = Math.floor(Math.random() * 10);
+                  arr[x] = numbers[random];
+                }
+                var arrString = arr.toString();
+            }
+              //if only special characters
+            else {
+                for (var x = 0; x < firstRandomNumber; x++ ) {
+                  //random number between 0 and 32 (for the special characters)
+                  var random = Math.floor(Math.random() * 33);
+                  arr[x] = numbers[random];
+                }
+                var arrString = arr.toString();
+            }
+        }
+        else { 
+        //if counter ===2
+            if (i === 0){
+                for (var y = 0; y < secondRandomNumber; y++ ) {
+                //random number between 0 and 25 (for the alphabets)
+                    var random = Math.floor(Math.random() * 26);
+                    arrTwo[y] = lowerAlphabet[random];
+                }
+                var arrStringTwo = arr.toString();
+    
+            }
+            //if only uppercase
+            else if (i === 1) {
+                for (var y = 0; y < secondRandomNumber; y++ ) {
+                //random number between 0 and 25 (for the alphabets)
+                var random = Math.floor(Math.random() * 26);
+                arrTwo[y] = upperAlphabet[random];
+                }
+                var arrStringTwo = arr.toString();
+            }
+            //if only numeric
+            else if (i === 2) {
+                for (var y = 0; y < secondRandomNumber; y++ ) {
+                //random number between 0 and 9 (for the numbers)
+                var random = Math.floor(Math.random() * 10);
+                arrTwo[y] = numbers[random];
+                }
+                var arrStringTwo = arr.toString();
+            }
+            //if only special characters
+            else {
+                for (var y = 0; y < secondRandomNumber; y++ ) {
+                //random number between 0 and 32 (for the special characters)
+                    var random = Math.floor(Math.random() * 33);
+                    arrTwo[y] = numbers[random];
+                }
+                var arrStringTwo = arr.toString();
+            }
+        }
+      }
 
 
+    }
+    window.alert("The password is " + arrString + "," + arrStringTwo);
+  }
 
+    //*************************************************************************
+
+  else {
+    console.log("just as a safety");
+
+  }
 
 
 
