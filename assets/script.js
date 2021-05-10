@@ -1,8 +1,8 @@
 // Assignment code here
 
 //declare arrays that contain the range of possible characters in a password
-const loweralphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-const upperalphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+const lowerAlphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+const upperAlphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const special = ["\u0020", "\u0021", "\u0022", "\u0023", "\u0024", "\u0025", "\u0026", "\u0027", "\u0028", "\u0029", "\u002A", "\u002B", "\u002C", "\u002D", "\u002E", "\u002F", "\u003A", "\u003B", "\u003C", "\u003D", "\u003E", "\u003F", "\u0040", "\u005B", "\u005C", "\u005D", "\u005E", "\u005F", "\u0060", "\u007B", "\u007C", "\u007D", "\u007E"];
 
@@ -111,15 +111,21 @@ var characterType = function () {
     }
   };
 
-  lowerCase();
-  upperCase();
-  numeric(); 
-  specialCharacter();
+  var a = lowerCase();
+  var b = upperCase();
+  var c =  numeric(); 
+  var d = specialCharacter();
 
-  //check to make sure at least one character requirement was chosen
+  //check to make sure at least one character requirement was chosen, if not, start the ask from the beginning
   if (characterCounter === 0) {
     window.alert("No character type was chosen");
     return characterType();
+  }
+
+  else {
+    var outcome = [a, b, c, d];
+    console.log(outcome);
+    return outcome;
   }
 
 
@@ -142,11 +148,86 @@ var generatePassword = function () {
     window.alert("You did not pick a valid option. Try again.");
     return generatePassword ();
   }
-
+  //return an array of true/false. [lowerCase, upperCase, numeric, specialCharacter]
   else {
-    characterType();
+    var characterTypeArray= characterType(); 
+  }
+
+  //Cycle through array to find out how many truths/charactertypes the user wants
+  var numberOfCharacterTypes = 0;
+  for (var arrayCounter = 0; arrayCounter < characterTypeArray.length; arrayCounter++ ) {
+    if (characterTypeArray[arrayCounter]) {
+      numberOfCharacterTypes++;
+    }
 
   }
+
+  console.log(numberOfCharacterTypes);
+
+  //a variable to store characterTypesMinusOne 
+  var characterTypesMinusOne = numberOfCharacterTypes - 1;
+
+  console.log(characterTypesMinusOne);
+
+
+  //*****************************************************************************************
+  var arr = [];
+  //Case 1 - Only 1 Character Type
+
+  if (numberOfCharacterTypes === 1){
+    //var firstRandomNumber = passwordLength;
+    for (var i = 0; i < characterTypeArray.length; i++ ) { 
+      // To look for which of the character types was seclected
+      if (characterTypeArray[i]) {
+        //if only lowercase
+        if (i === 0){
+          for (var x = 0; x < passwordLength; x++ ) {
+            //random number between 0 and 25 (for the alphabets)
+            var random = Math.floor(Math.random() * 26);
+            arr[x] = lowerAlphabet[random];
+          }
+          var arrString = arr.toString();
+          window.alert("The password is " + arrString);
+
+        }
+        //if only uppercase
+        else if (i === 1) {
+          for (var x = 0; x < passwordLength; x++ ) {
+            //random number between 0 and 25 (for the alphabets)
+            var random = Math.floor(Math.random() * 26);
+            arr[x] = upperAlphabet[random];
+          }
+          var arrString = arr.toString();
+          window.alert("The password is " + arrString);
+        }
+        //if only numeric
+        else if (i === 2) {
+          for (var x = 0; x < passwordLength; x++ ) {
+            //random number between 0 and 9 (for the numbers)
+            var random = Math.floor(Math.random() * 10);
+            arr[x] = numbers[random];
+          }
+          var arrString = arr.toString();
+          window.alert("The password is " + arrString);
+        }
+        //if only special characters
+        else {
+          for (var x = 0; x < passwordLength; x++ ) {
+            //random number between 0 and 32 (for the special characters)
+            var random = Math.floor(Math.random() * 33);
+            arr[x] = numbers[random];
+          }
+          var arrString = arr.toString();
+          window.alert("The password is " + arrString);
+        }
+      }
+    }  
+  }
+
+  //*************************************************************************
+
+
+
 
   //return the password
 
