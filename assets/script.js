@@ -171,7 +171,10 @@ var generatePassword = function () {
 
 
   //*****************************************************************************************
+  //Declare an empty array to put in the password characters
   var arr = [];
+
+
   //Case 1 - Only 1 Character Type
 
   if (numberOfCharacterTypes === 1){
@@ -225,10 +228,23 @@ var generatePassword = function () {
   }
 
   //*************************************************************************
+  //Case 2 - 2 Character Types
+  var passwordLengthMinusOne = passwordLength - 1;
+  // a random number between 1 and one less than the password length (to ensure that there's always one left for the second number)
+  var firstRandomNumber = Math.floor(Math.random() * (passwordLengthMinusOne) + 1);
+  var secondRandomNumber = passwordLength - firstRandomNumber;
+
+  //Those two values are the lengths of 
 
 
 
 
+
+
+
+
+
+  //*************************************************************************
   //return the password
 
 };
