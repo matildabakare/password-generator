@@ -68,7 +68,7 @@ var characterType = function () {
     }
   };
 
-
+  
 
   //Numeric 
   var numeric = function () {
@@ -90,7 +90,7 @@ var characterType = function () {
     }
   };
 
-
+  
   //Special characters
   var specialCharacter = function () {
     var specialCharacterInput = window.prompt(
@@ -111,7 +111,10 @@ var characterType = function () {
     }
   };
 
-
+  lowerCase();
+  upperCase();
+  numeric(); 
+  specialCharacter();
 
   //check to make sure at least one character requirement was chosen
   if (characterCounter === 0) {
